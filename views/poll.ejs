@@ -1,0 +1,63 @@
+<html>
+    <head>
+        <title>Pollify</title>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+        <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    </head>
+    <body>
+        <div id="header" style="padding:30px">
+            <h1>PolliFy</h1>
+            <h4>Free poll generation app powered by Fyminds</h4>
+        </div>
+        <div id="pollContainer" style="padding:30px; background-color:#e5eef0">
+            <form action="/make_vote" method="POST" data-toggle="validator">
+                <h4><%= poll.question %></h4>
+                <h5 style="margin-bottom:20px">- <%= poll.firstName %> <%= poll.lastName %></h5>
+                <div class="form-group">
+                    <input type="hidden" name="pollId" value="<%= poll.id %>">
+                    <% for(var i = 0; i < poll.answers.length; i++){ %>
+                        <div class="form-check">
+                            <label class="form-check-label">
+                                <input class="form-check-input" type="radio" name="voteAnswer" value="<%= poll.answers[i]._id %>" required>
+                                <!--<%= poll.answers[i].answer %> | Votes: <%= poll.answers[i].votes %>-->
+                                <%= poll.answers[i].answer %>
+                            </label>
+                        </div>
+                    <% } %>
+                    <br/>
+                    <button type="submit" class="btn btn-default">Submit Vote</button>
+                    <p style="margin-top:5px"><a href="/results/<%= poll.id %>">See results</a></p>
+                </div>
+            </form>
+        </div>
+        <div id="about" style="padding:65px">
+            <div class="row">
+                <div class="col-md-8">
+                    <h4>Make your startup</h4>
+                    <h5 style="padding-bottom:10px">Dream a reality</h5>
+                    <p>Fyminds is an integrated service company that offers clients a range of services from marketing, operation, technology, strategy and advanced analytics. Our unique approach is solution driven and result delivery. We help our clients develop, implement and realize solutions.</p>
+                    <div class="text-center">
+                        <img width="584" height="298" src="http://www.fyminds.com/wp-content/uploads/2015/09/plant-image.png">
+                    </div>
+                </div>
+                <div class="col-md-4 text-center">
+                    <img style="margin-left: 10px; margin-top:20px" width="250" height="300" src="http://www.fyminds.com/wp-content/uploads/2017/02/fyminds_brochure.jpg">
+                    <div style="padding-top:20px">
+                        <a href="http://www.fyminds.com/wp-content/uploads/2017/02/fyminds_brochure.pdf">Click for more details</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="footer" style="padding:30px">
+            <h3>Contact</h3>
+            <hr/>
+            <h5>Address</h5>
+            <p>6700 Best Friend Rd.</p>
+            <p>Norcross, GA 30071</p>
+            <h5>Email</h5>
+            <p>info@fyminds.com</p>
+        </div>
+    </body>
+</html>

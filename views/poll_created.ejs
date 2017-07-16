@@ -1,0 +1,53 @@
+<html>
+    <head>
+        <title>Pollify</title>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+        <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    </head>
+    <body>
+        <div id="header" style="padding:30px">
+            <h1>PolliFy</h1>
+            <h4>Free poll generation app powered by Fyminds</h4>
+        </div>
+        <div id="pollContainer" style="padding:45px; background-color:#e5eef0">
+            <h4>Your poll has been created successfully!</h4>
+            <p>You can send this link to share your poll: </p>
+            <p>http://localhost:3000/poll/<%= pollId %></p>
+            <p>You can also click the following link to see your poll: <a href="http://localhost:3000/poll/<%= pollId %>">Link</a></p>
+        </div>
+         <div id="about" style="padding:65px">
+            <div class="row">
+                <div class="col-md-8">
+                    <h4>Make your startup</h4>
+                    <h5 style="padding-bottom:10px">Dream a reality</h5>
+                    <p>Fyminds is an integrated service company that offers clients a range of services from marketing, operation, technology, strategy and advanced analytics. Our unique approach is solution driven and result delivery. We help our clients develop, implement and realize solutions.</p>
+                    <div class="text-center">
+                        <img width="584" height="298" src="http://www.fyminds.com/wp-content/uploads/2015/09/plant-image.png">
+                    </div>
+                </div>
+                <div class="col-md-4 text-center">
+                    <img style="margin-left: 10px; margin-top:20px" width="250" height="300" src="http://www.fyminds.com/wp-content/uploads/2017/02/fyminds_brochure.jpg">
+                    <div style="padding-top:20px">
+                        <a href="http://www.fyminds.com/wp-content/uploads/2017/02/fyminds_brochure.pdf">Click for more details</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="footer" style="padding:30px">
+            <h3>Contact</h3>
+            <hr/>
+            <h5>Address</h5>
+            <p>6700 Best Friend Rd.</p>
+            <p>Norcross, GA 30071</p>
+            <h5>Email</h5>
+            <p>info@fyminds.com</p>
+        </div>
+    </body>
+    <script>
+        $(document).ready(function(){
+            
+        });
+    </script>
+</html>
