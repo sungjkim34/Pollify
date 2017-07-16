@@ -12,10 +12,20 @@
             <h4>Your poll has been created successfully!</h4>
             <p>You can send this link to share your poll: </p>
             <p>https://lit-anchorage-62341.herokuapp.com/poll/<%= pollId %></p>
+            <p><a href="#" onClick="copyToClipboard('https://lit-anchorage-62341.herokuapp.com/poll/<%= pollId %>')"><i class="fa fa-clone"></i> Copy to Clipboard</a></p>
             <p>You can also click the following link to see your poll: <a href="https://lit-anchorage-62341.herokuapp.com/poll/<%= pollId %>">Link</a></p>
         </div>
         <%- include('partials/about') %>
         <%- include('partials/contact') %>
         <%- include('partials/footer') %>
+        <script>
+            function copyToClipboard(element) {
+                var $temp = $("<input>");
+                $("body").append($temp);
+                $temp.val(element).select();
+                document.execCommand("copy");
+                $temp.remove();
+            }
+        </script>
     </body>
 </html>

@@ -13,6 +13,8 @@
                 <p>Your vote has been made successfully!</p>
                 <p>Please use the following link to share results: </p>
                 <p>https://lit-anchorage-62341.herokuapp.com/results/<%= poll.id %></p>
+                <p><a href="#" onClick="copyToClipboard('https://lit-anchorage-62341.herokuapp.com/results/<%= pollId %>')"><i class="fa fa-clone"></i> Copy to Clipboard</a></p>
+                <p>You can also click the following link to see your poll: <a href="https://lit-anchorage-62341.herokuapp.com/results/<%= pollId %>">Link</a></p>
             </div>
             <h4><%= poll.question %></h4>
             <h5 style="margin-bottom:20px">- <%= poll.firstName %> <%= poll.lastName %></h5>
@@ -23,5 +25,14 @@
         <%- include('partials/about') %>
         <%- include('partials/contact') %>
         <%- include('partials/footer') %>
+        <script>
+            function copyToClipboard(element) {
+                var $temp = $("<input>");
+                $("body").append($temp);
+                $temp.val(element).select();
+                document.execCommand("copy");
+                $temp.remove();
+            }
+        </script>
     </body>
 </html>
