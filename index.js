@@ -13,20 +13,21 @@ db.on('error', console.error.bind(console, 'MongoDB connection error: '));
 
 var uuid = require('uuid/v1');
 
-app.use(express.static(path.join(__dirname, 'public')));
+// app.use(express.static(path.join(__dirname, 'views')));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
 app.set('view engine', 'ejs');
 
 app.get('/', function(req, res){
-    res.sendFile(__dirname + 'index.html');
+    res.render('home');
 });
 
 app.get('/poll/:pollId', function(req, res){
     Poll.getPollById(req.params.pollId, (err, poll) => {
-        if(err){
-            console.log(err);
+        if(err || !poll){
+            console.log('Error: ' + err);
+            res.render('error');
         }
         else{
             res.render('poll', {
@@ -65,23 +66,25 @@ app.post('/create_poll', function(req, res){
         answers: answers
     });
     Poll.createPoll(poll, (err, poll) => {
-        if(err){
-            console.log(err);
+        if(err || !poll){
+            console.log('Error:' + err);
+            res.render('error');
         }
         else{
             console.log('posted');
+            res.render('poll_created', {
+                pollId: poll.id
+            });
         }
-    });
-    res.render('poll_created', {
-        pollId: poll.id
     });
 });
 
 app.post('/make_vote', function(req, res){
     voteReq = req.body;
     Poll.makeVote(voteReq, (err, poll) => {
-        if(err){
-            console.log(err);
+        if(err || !poll){
+            console.log('Error:' + err);
+            res.render('error');
         }
         else{
             console.log('vote made ' + poll);
@@ -94,8 +97,9 @@ app.post('/make_vote', function(req, res){
 
 app.get('/results/:pollId', function(req, res){
     Poll.getPollById(req.params.pollId, (err, poll) => {
-            if(err){
-                console.log(err);
+            if(err || !poll){
+                console.log('Error:' + err);
+                res.render('error');
             }
             else{
                 res.render('poll_results', {

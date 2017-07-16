@@ -24,7 +24,5 @@ module.exports.createPoll = function(poll, callback){
 }
 
 module.exports.makeVote = function(poll, callback){
-    console.log('JAYYY');
-    console.log(poll.voteAnswer);
     Poll.findOneAndUpdate({id: poll.pollId, "answers._id":mongoose.Types.ObjectId(poll.voteAnswer)}, {$inc: {'answers.$.votes': 1}}, {new: true},callback);
 }
