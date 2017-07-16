@@ -109,6 +109,41 @@ app.get('/results/:pollId', function(req, res){
         });
 });
 
+app.get('/fyadmin', function(req, res){
+    res.render('admin');
+});
+
+app.get('/admin', function(req, res){
+    res.render('error');
+});
+
+app.post('/admin', function(req, res){
+    if(req.body.username === 'fyadmin' && req.body.password === 'fypassword'){
+        Poll.getAllPolls((err, polls) => {
+            if(err || !polls){
+                console.log('Error:' + err);
+                res.render('error');
+            }
+            else{
+                res.render('adminpanel', {
+                    polls: polls
+                });
+            }
+        });
+    }
+    else{
+        res.render('adminerror');
+    }
+});
+
+app.post('/delete_poll', function(req, res){
+    Poll.deletePoll(req.body.id, (err, polls) => {
+        res.render('adminpanel', {
+            polls: polls
+        });
+    });
+});
+
 var port = Number(process.env.PORT || 3000);
 app.listen(port, function(){
     console.log('App started on port ' + port);

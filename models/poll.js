@@ -26,3 +26,11 @@ module.exports.createPoll = function(poll, callback){
 module.exports.makeVote = function(poll, callback){
     Poll.findOneAndUpdate({id: poll.pollId, "answers._id":mongoose.Types.ObjectId(poll.voteAnswer)}, {$inc: {'answers.$.votes': 1}}, {new: true},callback);
 }
+
+module.exports.getAllPolls = function(callback){
+    Poll.find({}, callback);
+}
+
+module.exports.deletePoll = function(id, callback){
+    Poll.findOneAndRemove({id: id}, callback);
+}

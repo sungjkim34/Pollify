@@ -1,0 +1,63 @@
+<html>
+    <head>
+        <title>Pollify</title>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+        <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    </head>
+    <body>
+        <%- include('partials/header') %>
+
+        <div id="adminContainer" style="padding:30px">
+            <h4>Welcome to the admin panel,</h4>
+            <h5>Here, you have access to view or delete any polls.</h5>
+            <table class="table table-hover" style="margin-top:20px">
+                <thead>
+                    <!-- <th>#</th> -->
+                    <th>Question</th>
+                    <th>Name</th>
+                    <th>Answer</th>
+                    <th>Votes</th>
+                    <th> </th>
+                </thead>
+                <tbody>
+                    <% for(var i = 0; i < polls.length; i++){ %>
+                        <tr>
+                            <!-- <th scope="row"><%= i+1 %></th> -->
+                            <td><%= polls[i].question %></td>
+                            <td><%= polls[i].firstName %> <%= polls[i].lastName %></td>
+                            <td>
+                                <% for(var j = 0; j < polls[i].answers.length; j++){ %>
+                                    <p><%= polls[i].answers[j].answer %></p>
+                                <% } %>
+                            </td>
+                            <td>
+                                <% for(var j = 0; j < polls[i].answers.length; j++){ %>
+                                    <p><%= polls[i].answers[j].votes %></p>
+                                <% } %>
+                            </td>
+                            <td>
+                                <a id="<%= polls[i].id %>" class="btn btn-danger" onClick="removePoll(this.id)">
+                                    <i class="fa fa-trash-o fa-lg"></i> 
+                                    Delete
+                                </a>
+                            </td>
+                        </tr>
+                    <% } %>
+                </tbody>
+            </table>
+        </div>
+        <%- include('partials/footer') %>
+        <script>
+            function removePoll(id) {
+                $.ajax({
+                    type: "POST",
+                    url: "/delete_poll",
+                    data: {id: id},
+                    success: $('#'+id).closest('tr').remove()
+                });
+            }
+        </script>
+    </body>
+</html>
