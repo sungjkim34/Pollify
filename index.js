@@ -26,16 +26,12 @@ app.get('/', function(req, res){
 
 app.get('/poll/:pollId', function(req, res){
     var date = new Date();
-    console.log(date);
-    console.log(Date.parse(date));
     Poll.getPollById(req.params.pollId, (err, poll) => {
         if(err || !poll){
             console.log('Error: ' + err);
             res.render('error');
         }
         else{
-            console.log('expires ' + Date.parse(poll.expirationDate));
-            console.log(poll.expirationDate);
             res.render('poll', {
                 poll: poll,
                 currentDate: Date.parse(date),
@@ -51,6 +47,7 @@ app.post('/create_poll', function(req, res){
     var tempExpirationDate = moment(req.body.expirationDate,"MM/DD/YYYY h:mm A");
     var expirationDate = new Date(tempExpirationDate.format('YYYY-MM-DD HH:mm'));
     var answers = [];
+    console.log(expirationDate);
     if(Array.isArray(pollAnswers)){
         pollAnswers.map(function(answer){        
             answers.push(
