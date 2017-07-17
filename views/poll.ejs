@@ -48,11 +48,14 @@
         <%- include('partials/footer') %>
         <script>
             $(function(){
-                console.log(new Date().getTimezoneOffset());
+                var offset = new Date().getTimezoneOffset();
                 var expirationDate= <%=expirationDate %>;
                 var currentDate= <%=currentDate %>;
-                console.log('expiration: ' + expirationDate);
-                console.log('current: ' + currentDate);
+                var newExpirationDate = expirationDate + ((offset/60) * 60 * 60 * 1000);
+                console.log(offset);
+                console.log('expiration: ' + expirationDate + ' ' + new Date(expirationDate*1000));
+                console.log('current: ' + currentDate + ' ' + new Date(currentDate*1000));
+                console.log('new expiration' + newExpirationDate + ' ' + new Date(newExpirationDate*1000));
             });
         </script>
     </body>
