@@ -49,6 +49,10 @@
         <script>
             $(function(){
                 console.log(new Date().getTimezoneOffset());
+                var expirationDate= <%=expirationDate %>;
+                var currentDate= <%=currentDate %>;
+                console.log('expiration: ' + expirationDate);
+                console.log('current: ' + currentDate);
             });
         </script>
     </body>
