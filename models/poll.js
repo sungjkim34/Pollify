@@ -8,7 +8,9 @@ var PollSchema = new mongoose.Schema({
         answer: String,
         votes: Number
     }],
-    id: String
+    id: String,
+    doesExpire: Boolean,
+    expirationDate: Date
 });
 
 var Poll = mongoose.model('Poll', PollSchema);

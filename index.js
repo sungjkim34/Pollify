@@ -3,6 +3,7 @@ var bodyParser = require('body-parser');
 var path = require('path');
 var mongoose = require('mongoose');
 var Poll = require('./models/poll');
+var moment = require('moment');
 
 var app = express();
 
@@ -13,7 +14,7 @@ db.on('error', console.error.bind(console, 'MongoDB connection error: '));
 
 var uuid = require('uuid/v1');
 
-// app.use(express.static(path.join(__dirname, 'views')));
+app.use(express.static(path.join(__dirname, 'views')));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
@@ -24,14 +25,21 @@ app.get('/', function(req, res){
 });
 
 app.get('/poll/:pollId', function(req, res){
+    var date = new Date();
+    console.log(date);
+    console.log(Date.parse(date));
     Poll.getPollById(req.params.pollId, (err, poll) => {
         if(err || !poll){
             console.log('Error: ' + err);
             res.render('error');
         }
         else{
+            console.log('expires ' + Date.parse(poll.expirationDate));
+            console.log(poll.expirationDate);
             res.render('poll', {
-                poll: poll
+                poll: poll,
+                currentDate: Date.parse(date),
+                moment: moment
             });
         }
     });
@@ -39,6 +47,8 @@ app.get('/poll/:pollId', function(req, res){
 
 app.post('/create_poll', function(req, res){
     var pollAnswers = req.body.answers;
+    var tempExpirationDate = moment(req.body.expirationDate,"MM/DD/YYYY h:mm A");
+    var expirationDate = new Date(tempExpirationDate.utcOffset('-4').format('YYYY-MM-DD HH:mm'));
     var answers = [];
     if(Array.isArray(pollAnswers)){
         pollAnswers.map(function(answer){        
@@ -58,13 +68,28 @@ app.post('/create_poll', function(req, res){
             }
         )
     }
-    var poll = new Poll({
-        id: uuid(),
-        question: req.body.question,
-        firstName: req.body.firstName,
-        lastName: req.body.lastName,
-        answers: answers
-    });
+    var poll;
+    if(req.body.doesExpire){
+        poll = new Poll({
+            id: uuid(),
+            question: req.body.question,
+            firstName: req.body.firstName,
+            lastName: req.body.lastName,
+            answers: answers,
+            doesExpire: true,
+            expirationDate:  expirationDate
+        });
+    }
+    else{
+        poll = new Poll({
+            id: uuid(),
+            question: req.body.question,
+            firstName: req.body.firstName,
+            lastName: req.body.lastName,
+            answers: answers,
+            doesExpire: false
+        });
+    }
     Poll.createPoll(poll, (err, poll) => {
         if(err || !poll){
             console.log('Error:' + err);
