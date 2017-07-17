@@ -18,7 +18,7 @@
                     <% for(var i = 0; i < poll.answers.length; i++){ %>
                         <div class="form-check">
                             <label class="form-check-label">
-                                <input id="voteAnswer" class="form-check-input" type="radio" name="voteAnswer" value="<%= poll.answers[i]._id %>" required>
+                                <input class="form-check-input voteAnswer" type="radio" name="voteAnswer" value="<%= poll.answers[i]._id %>" required>
                                     <%= poll.answers[i].answer %>
                             </label>
                         </div>
@@ -49,8 +49,8 @@
                 console.log('new expiration' + newExpirationDate + ' ' + new Date((newExpirationDate/1000)*1000));
                 if(currentDate > newExpirationDate){
                     $('#submitVote').prop('disabled', true);
-                    $('#voteAnswer').prop('disabled', true);
-                    $('<h5>This poll has expired on ' + moment(expirationDate).format('MMMM DD, YYYY [at] h:mm a') + '</h5><h5>Please click the link below to see the results.</h5>').insertAfter('#submitVote')
+                    $('.voteAnswer').prop('disabled', true);
+                    // $('<h5>This poll has expired on ' + moment(expirationDate).format('MMMM DD, YYYY [at] h:mm a') + '</h5><h5>Please click the link below to see the results.</h5>').insertAfter('#submitVote')
                 }                        
             });
         </script>
