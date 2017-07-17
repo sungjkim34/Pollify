@@ -2,11 +2,11 @@
     <head>
         <title>Pollify</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+        <link rel="stylesheet" href="../css/bootstrap.min.css">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-        <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-        <script src="https://cdn.jsdelivr.net/momentjs/2.18.1/moment.min.js"></script>
+        <script src="../js/jquery-3.2.1.min.js"></script>
+        <script src="../js/bootstrap.min.js"></script>
+        <script src="../js/moment.min.js"></script>
     </head>
     <body>
         <%- include('partials/header') %>
@@ -48,7 +48,9 @@
                     // $('<h5>Your offset is ' + offset + '</h5>').insertAfter('#submitVote');
                 }
                 else{
-                    $('<h5>This poll will expire on ' + moment(newExpirationDate).format('MMMM DD, YYYY [at] h:mm a') + '</h5>').insertAfter('#submitVote');
+                    if(newExpirationDate){
+                      $('<h5>This poll will expire on ' + moment(newExpirationDate).format('MMMM DD, YYYY [at] h:mm a') + '</h5>').insertAfter('#submitVote');
+                    }
                 }
             });
         </script>
