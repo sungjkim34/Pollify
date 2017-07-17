@@ -48,7 +48,7 @@ app.get('/poll/:pollId', function(req, res){
 app.post('/create_poll', function(req, res){
     var pollAnswers = req.body.answers;
     var tempExpirationDate = moment(req.body.expirationDate,"MM/DD/YYYY h:mm A");
-    var expirationDate = new Date(tempExpirationDate.utcOffset('-4').format('YYYY-MM-DD HH:mm'));
+    var expirationDate = new Date(tempExpirationDate.format('YYYY-MM-DD HH:mm'));
     var answers = [];
     if(Array.isArray(pollAnswers)){
         pollAnswers.map(function(answer){        
