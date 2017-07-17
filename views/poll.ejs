@@ -53,9 +53,9 @@
                 var currentDate= <%=currentDate %>;
                 var newExpirationDate = expirationDate + ((offset/60) * 60 * 60 * 1000);
                 console.log(offset);
-                console.log('expiration: ' + expirationDate + ' ' + new Date(expirationDate*1000));
-                console.log('current: ' + currentDate + ' ' + new Date(currentDate*1000));
-                console.log('new expiration' + newExpirationDate + ' ' + new Date(newExpirationDate*1000));
+                console.log('expiration: ' + expirationDate + ' ' + new Date((expirationDate/1000)*1000));
+                console.log('current: ' + currentDate + ' ' + new Date((currentDate/1000)*1000));
+                console.log('new expiration' + newExpirationDate + ' ' + new Date((newExpirationDate/1000)*1000));
             });
         </script>
     </body>
