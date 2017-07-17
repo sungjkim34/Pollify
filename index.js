@@ -47,6 +47,8 @@ app.post('/create_poll', function(req, res){
     var pollAnswers = req.body.answers;
     var tempExpirationDate = moment(req.body.expirationDate,"MM/DD/YYYY h:mm A");
     var expirationDate = new Date(tempExpirationDate.format('YYYY-MM-DD HH:mm'));
+    var tempPostDate = moment(new Date(),"MM/DD/YYYY h:mm A");
+    var postDate = new Date(tempPostDate.format('YYYY-MM-DD HH:mm'));
     var answers = [];
     console.log(expirationDate);
     if(Array.isArray(pollAnswers)){
@@ -76,7 +78,8 @@ app.post('/create_poll', function(req, res){
             lastName: req.body.lastName,
             answers: answers,
             doesExpire: true,
-            expirationDate:  expirationDate
+            expirationDate:  expirationDate,
+            postDate: postDate
         });
     }
     else{
@@ -86,7 +89,8 @@ app.post('/create_poll', function(req, res){
             firstName: req.body.firstName,
             lastName: req.body.lastName,
             answers: answers,
-            doesExpire: false
+            doesExpire: false,
+            postDate: postDate
         });
     }
     Poll.createPoll(poll, (err, poll) => {
