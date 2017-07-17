@@ -36,7 +36,8 @@ app.get('/poll/:pollId', function(req, res){
                 poll: poll,
                 currentDate: Date.parse(date),
                 expirationDate: Date.parse(poll.expirationDate),
-                moment: moment
+                moment: moment,
+                offset: new Date().getTimezoneOffset()
             });
         }
     });
