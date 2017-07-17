@@ -40,15 +40,11 @@
                 var expirationDate= <%=expirationDate %>;
                 var currentDate= <%=currentDate %>;
                 var newExpirationDate = expirationDate + ((offset/60) * 60 * 60 * 1000);
-                var outputExpirationDate = new Date(newExpirationDate);
-                console.log(offset);
-                console.log('expiration: ' + expirationDate + ' ' + new Date((expirationDate/1000)*1000));
-                console.log('current: ' + currentDate + ' ' + new Date((currentDate/1000)*1000));
-                console.log('new expiration' + newExpirationDate + ' ' + new Date((newExpirationDate/1000)*1000));
                 if(currentDate > newExpirationDate){
                     $('#submitVote').prop('disabled', true);
                     $('.voteAnswer').prop('disabled', true);
                     $('<h5>This poll has expired on ' + moment(newExpirationDate).format('MMMM DD, YYYY [at] h:mm a') + '</h5><h5>Please click the link below to see the results.</h5>').insertAfter('#submitVote')
+                    $('<h5>Your current time is ' + moment(currentDate).format('MMMM DD, YYYY [at] h:mm a') + '</h5>').insertAfter('#submitVote')
                 }                        
             });
         </script>
