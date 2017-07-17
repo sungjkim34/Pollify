@@ -18,7 +18,7 @@
                     <% for(var i = 0; i < poll.answers.length; i++){ %>
                         <div class="form-check">
                             <label class="form-check-label">
-                                <% if(currentDate && currentDate > poll.expirationDate){ %>
+                                <% if(currentDate && currentDate > expirationDate){ %>
                                     <input class="form-check-input" type="radio" name="voteAnswer" value="<%= poll.answers[i]._id %>" required disabled>
                                     <%= poll.answers[i].answer %>
                                 <% } else { %>

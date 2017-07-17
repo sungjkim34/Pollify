@@ -39,6 +39,7 @@ app.get('/poll/:pollId', function(req, res){
             res.render('poll', {
                 poll: poll,
                 currentDate: Date.parse(date),
+                expirationDate: Date.parse(poll.expirationDate),
                 moment: moment
             });
         }
