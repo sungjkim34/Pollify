@@ -1,0 +1,39 @@
+<html>
+    <head>
+        <title>Pollify</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="../../css/bootstrap.min.css">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+        <script src="../../js/jquery-3.2.1.min.js"></script>
+        <script src="../../js/bootstrap.min.js"></script>
+    </head>
+    <body>
+        <%- include('partials/header') %>
+        <div id="pollContainer" style="padding:30px; background-color:#e5eef0">
+            <div style="margin-bottom:40px">
+                <p>Your vote has been made successfully!</p>
+                <p>Please use the following link to share results: </p>
+                <p>https://lit-anchorage-62341.herokuapp.com/zh/results/<%= poll.id %></p>
+                <p><a href="#" onClick="copyToClipboard('https://lit-anchorage-62341.herokuapp.com/zh/results/<%= poll.id %>')"><i class="fa fa-clone"></i> Copy to Clipboard</a></p>
+                <p>You can also click the following link to see your poll: <a href="https://lit-anchorage-62341.herokuapp.com/zh/results/<%= poll.id %>">Link</a></p>
+            </div>
+            <h4><%= poll.question %></h4>
+            <h5 style="margin-bottom:20px">- <%= poll.firstName %> <%= poll.lastName %></h5>
+            <% for(var i = 0; i < poll.answers.length; i++){ %>
+                <li><%= poll.answers[i].answer %> - Votes: <%= poll.answers[i].votes %></li>
+            <% } %>
+        </div>
+        <%- include('partials/about') %>
+        <%- include('partials/contact') %>
+        <%- include('partials/footer') %>
+        <script>
+            function copyToClipboard(element) {
+                var $temp = $("<input>");
+                $("body").append($temp);
+                $temp.val(element).select();
+                document.execCommand("copy");
+                $temp.remove();
+            }
+        </script>
+    </body>
+</html>
