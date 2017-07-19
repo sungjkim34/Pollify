@@ -13,7 +13,7 @@
             <h4>问卷已经生成!</h4>
             <p>分享以下链接: </p>
             <p>https://lit-anchorage-62341.herokuapp.com/zh/poll/<%= pollId %></p>
-            <p><a href="#" onClick="copyToClipboard('https://lit-anchorage-62341.herokuapp.com/zh/poll/<%= pollId %>')"><i class="fa fa-clone"></i> 复制链接</a></p>
+            <p><a onClick="copyToClipboard('https://lit-anchorage-62341.herokuapp.com/zh/poll/<%= pollId %>')"><i class="fa fa-clone"></i> 复制链接</a></p>
             <p>点击查看问卷结果: <a href="https://lit-anchorage-62341.herokuapp.com/zh/poll/<%= pollId %>">结果链接</a></p>
         </div>
         <%- include('partials/about') %>
