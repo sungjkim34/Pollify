@@ -37,19 +37,21 @@
         <script>
             $(function(){
                 var offset = new Date().getTimezoneOffset();
-                var expirationDate= <%=expirationDate %>;
-                var currentDate= <%=currentDate %>;
+                var expirationDate= <%= expirationDate %>;
+                var currentDate= <%= currentDate %>;
                 var newExpirationDate = expirationDate + ((offset/60) * 60 * 60 * 1000);
-                if(currentDate > newExpirationDate){
+
+                //Change all expirationDate below to newExpirationDate if need offsetting
+                if(currentDate > expirationDate){
                     $('#submitVote').prop('disabled', true);
                     $('.voteAnswer').prop('disabled', true);
-                    $('<h5>This poll has expired on ' + moment(newExpirationDate).format('MMMM DD, YYYY [at] h:mm a') + '</h5><h5>Please click the link below to see the results.</h5>').insertAfter('#submitVote');
+                    $('<h5>This poll has expired on ' + moment(expirationDate).format('MMMM DD, YYYY [at] h:mm a') + '</h5><h5>Please click the link below to see the results.</h5>').insertAfter('#submitVote');
                     // $('<h5>Your current time is ' + moment(currentDate).format('MMMM DD, YYYY [at] h:mm a') + '</h5>').insertAfter('#submitVote');
                     // $('<h5>Your offset is ' + offset + '</h5>').insertAfter('#submitVote');
                 }
                 else{
-                    if(newExpirationDate){
-                      $('<h5>This poll will expire on ' + moment(newExpirationDate).format('MMMM DD, YYYY [at] h:mm a') + '</h5>').insertAfter('#submitVote');
+                    if(expirationDate){
+                      $('<h5>This poll will expire on ' + moment(expirationDate).format('MMMM DD, YYYY [at] h:mm a') + '</h5>').insertAfter('#submitVote');
                     }
                 }
             });

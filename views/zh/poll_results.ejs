@@ -13,7 +13,7 @@
             <h4><%= poll.question %></h4>
             <h5 style="margin-bottom:20px">- <%= poll.firstName %> <%= poll.lastName %></h5>
             <% for(var i = 0; i < poll.answers.length; i++){ %>
-                <li><%= poll.answers[i].answer %> - Votes: <%= poll.answers[i].votes %></li>
+                <li><%= poll.answers[i].answer %> - 投票: <%= poll.answers[i].votes %></li>
             <% } %>
         </div>
         <%- include('partials/about') %>
