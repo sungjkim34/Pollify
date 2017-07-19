@@ -13,7 +13,9 @@
         <div id="pollContainer" style="padding:30px; background-color:#e5eef0">
             <form action="/zh/make_vote" method="POST" data-toggle="validator">
                 <h4><%= poll.question %></h4>
-                <h5 style="margin-bottom:20px">- <%= poll.firstName %> <%= poll.lastName %></h5>
+                <% if(poll.firstName || poll.lastName) { %>
+                    <h5 style="margin-bottom:20px">- <%= poll.firstName %> <%= poll.lastName %></h5>
+                <% } %>
                 <div class="form-group">
                     <input type="hidden" name="pollId" value="<%= poll.id %>">
                     <% for(var i = 0; i < poll.answers.length; i++){ %>
