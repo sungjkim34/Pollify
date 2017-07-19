@@ -11,11 +11,11 @@
         <%- include('partials/header') %>
         <div id="pollContainer" style="padding:30px; background-color:#e5eef0">
             <div style="margin-bottom:40px">
-                <p>Your vote has been made successfully!</p>
-                <p>Please use the following link to share results: </p>
+                <p>您的投票已成功!</p>
+                <p>请使用以下链接分享结果: </p>
                 <p>https://lit-anchorage-62341.herokuapp.com/zh/results/<%= poll.id %></p>
-                <p><a href="#" onClick="copyToClipboard('https://lit-anchorage-62341.herokuapp.com/zh/results/<%= poll.id %>')"><i class="fa fa-clone"></i> Copy to Clipboard</a></p>
-                <p>You can also click the following link to see your poll: <a href="https://lit-anchorage-62341.herokuapp.com/zh/results/<%= poll.id %>">Link</a></p>
+                <p><a href="#" onClick="copyToClipboard('https://lit-anchorage-62341.herokuapp.com/zh/results/<%= poll.id %>')"><i class="fa fa-clone"></i> 复制链接</a></p>
+                <p>点击查看问卷结果: <a href="https://lit-anchorage-62341.herokuapp.com/zh/results/<%= poll.id %>">结果链接</a></p>
             </div>
             <h4><%= poll.question %></h4>
             <% if(poll.firstName || poll.lastName) { %>
