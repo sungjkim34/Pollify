@@ -16,7 +16,7 @@
                 <p>https://lit-anchorage-62341.herokuapp.com/results/<%= poll.id %></p>
                 <p><a href="#" class="js-copy-btn"><i class="fa fa-clone"></i> Copy to Clipboard</a></p>
                 <p>You can also click the following link to see your poll: <a href="https://lit-anchorage-62341.herokuapp.com/results/<%= poll.id %>">Link</a></p>
-                <textarea class="text-to-copy" style="display:none">https://lit-anchorage-62341.herokuapp.com/results/<%= pollId %></textarea>
+                <textarea class="text-to-copy" style="display:none">https://lit-anchorage-62341.herokuapp.com/results/<%= poll.id %></textarea>
             </div>
             <h4><%= poll.question %></h4>
             <% if(poll.firstName || poll.lastName) { %>

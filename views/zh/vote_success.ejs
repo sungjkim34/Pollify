@@ -17,7 +17,7 @@
                 <!-- <p><a href="#" onClick="copyToClipboard('https://lit-anchorage-62341.herokuapp.com/zh/results/<%= poll.id %>')"><i class="fa fa-clone"></i> 复制链接</a></p> -->
                 <p><a href="#" class="js-copy-btn"><i class="fa fa-clone"></i> 复制链接</a></p>
                 <p>点击查看问卷结果: <a href="https://lit-anchorage-62341.herokuapp.com/zh/results/<%= poll.id %>">结果链接</a></p>
-                <textarea class="text-to-copy" style="display:none">https://lit-anchorage-62341.herokuapp.com/zh/results/<%= pollId %></textarea>
+                <textarea class="text-to-copy" style="display:none">https://lit-anchorage-62341.herokuapp.com/zh/results/<%= poll.id %></textarea>
             </div>
             <h4><%= poll.question %></h4>
             <% if(poll.firstName || poll.lastName) { %>
